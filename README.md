@@ -90,10 +90,15 @@ Ensure you have the following installed:
   Inside the server directory, create a .env file and add your configuration:
   
   MONGO_URI=your_mongodb_connection_string
+  
   GOOGLE_CLIENT_ID=your_google_client_id
+  
   GOOGLE_CLIENT_SECRET=your_google_client_secret
+  
   PORT=5000
+  
   JWT_SECRET=ABCDEFG
+  
   COOKIE_KEY=XYZ
 
 5. **To populate your database with sample roadmap and club data:**
