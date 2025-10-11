@@ -101,10 +101,14 @@ Ensure you have the following installed:
   
   COOKIE_KEY=XYZ
 
+
+
 5. **To populate your database with sample roadmap and club data:**
 
     cd server
     node seeder -i
+
+
 
 
 
