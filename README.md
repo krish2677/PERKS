@@ -1,7 +1,7 @@
 # 🌟 PERKS – Platform for Engineering Roadmap and Knowledge
 
 **PERKS** is a comprehensive, full-stack web platform designed to guide engineering students through their academic and professional journey.  
-It helps students make informed decisions about electives, internships, clubs, and skill development — all in one place.
+It helps students make informed decisions about electives, internships, clubs, and skill development — all in one place. (It has dummy data for now)
 
 ---
 
