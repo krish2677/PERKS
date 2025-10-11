@@ -1,0 +1,165 @@
+/* --- General Container & Background --- */
+.club-detail-container {
+    font-family: 'Segoe UI', 'Roboto', sans-serif;
+    background-color: #0a0a0a; /* Updated to pure black */
+    color: #e0e0e0;
+    min-height: 100vh;
+}
+
+/* --- Impactful Header --- */
+.club-header {
+    text-align: center;
+    padding: 5rem 2rem;
+    background: rgba(10, 10, 10, 0.5); /* Darker glass effect */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+}
+
+.club-header-content h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem 0;
+    /* Gradient Text Effect */
+    background: linear-gradient(90deg, #4f46e5, #d646e5, #ff7b7b);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.club-header-content .tagline {
+    font-size: 1.3rem;
+    color: #a0a0a0; /* Softer grey */
+    margin: 0 0 2rem 0;
+    font-style: italic;
+}
+
+.back-to-dashboard {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    color: #c0c0c0;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.back-to-dashboard:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* --- Main Content Layout --- */
+.club-main-content {
+    padding: 3rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.content-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+}
+
+/* --- Glassy Section Cards --- */
+.club-section {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 2.5rem;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.club-section h2 {
+    margin-top: 0;
+    font-size: 2rem;
+    color: #fff;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.club-section p {
+    line-height: 1.7;
+    color: #a0a0a0;
+}
+
+.club-section ul {
+    list-style-type: '✓  ';
+    padding-left: 1.5rem;
+    color: #c0c0c0;
+}
+
+.club-section li {
+    margin-bottom: 0.8rem;
+    line-height: 1.6;
+}
+
+/* --- Specific Section Styles --- */
+.hierarchy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1.5rem;
+}
+
+.hierarchy-member {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1rem;
+    border-radius: 10px;
+}
+
+.hierarchy-member .role {
+    font-weight: 600;
+    color: #d646e5; /* Gradient color */
+    margin: 0;
+}
+
+.hierarchy-member .name {
+    margin: 0.3rem 0 0 0;
+    color: #fff;
+    font-size: 0.9rem;
+}
+
+.event-card {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1.5rem;
+    border-radius: 10px;
+    border-left: 4px solid #ff7b7b; /* Gradient color */
+    margin-bottom: 1rem;
+}
+
+.event-card h3 {
+    margin: 0 0 0.5rem 0;
+    color: #fff;
+}
+
+.event-card .event-date {
+    font-style: italic;
+    color: #a0a0a0;
+    margin: 0 0 1rem 0;
+}
+
+.how-to-join {
+    background: rgba(79, 70, 229, 0.1); /* Gradient color with alpha */
+    border-left: 5px solid #4f46e5;
+}
+
+.how-to-join h2 {
+    color: #8b5cf6;
+}
+
+/* --- Loading & Error States --- */
+.loading-container, .error-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-size: 1.5rem;
+    color: #fff;
+    background: #0a0a0a;
+}
+

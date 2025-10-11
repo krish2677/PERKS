@@ -1,0 +1,178 @@
+/* --- Base Container --- */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 2rem 1rem; 
+    font-family: 'Segoe UI', 'Roboto', sans-serif;
+    background-color: #0a0a0a; /* Updated to pure black */
+}
+
+/* --- Glassmorphism Login Card --- */
+.login-card {
+    width: 100%;
+    max-width: 420px;
+    text-align: center;
+    padding: 3rem;   
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.03); /* Faint glassy effect */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/* --- Typography with Gradient --- */
+.login-card h2 {
+    margin-bottom: 1rem;
+    font-size: 2.5rem;
+    font-weight: 600;
+    /* Gradient text effect */
+    background: linear-gradient(90deg, #4f46e5, #d646e5, #ff7b7b);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.login-card p {
+    margin-bottom: 2.5rem;
+    color: #a0a0a0; /* Softer grey for subtitles */
+}
+
+/* --- Floating Label Form Styles --- */
+.form-group {
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.form-input {
+    width: 100%;
+    padding: 0.9rem 1rem;
+    border-radius: 10px;
+    box-sizing: border-box;
+    font-size: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+    transition: all 0.3s ease;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #4f46e5; /* Gradient start color for focus */
+    box-shadow: 0 0 10px rgba(79, 70, 229, 0.3);
+}
+
+.form-label {
+    position: absolute;
+    top: 50%;
+    left: 1rem;
+    transform: translateY(-50%);
+    font-size: 1rem;
+    color: #a0a0a0;
+    pointer-events: none;
+    transition: all 0.2s ease-out;
+}
+
+/* Floating/cut-out effect */
+.form-input:focus + .form-label,
+.form-input:not(:placeholder-shown) + .form-label {
+    top: -0.8rem;
+    left: 0.8rem;
+    font-size: 0.75rem;
+    color: #d646e5; /* Gradient middle color */
+    background-color: #121212; /* Slightly lighter black for cut-out effect */
+    padding: 0 0.4rem;
+    border-radius: 4px;
+}
+
+/* --- Buttons --- */
+.login-button {
+    width: 100%;
+    padding: 0.9rem;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: #fff;
+    color: #0a0a0a;
+    border: none;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+}
+
+.login-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2);
+}
+
+.google-button {
+    width: 100%;
+    padding: 0.9rem;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.google-button:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.google-button img {
+    width: 20px;
+    height: 20px;
+}
+
+/* --- Divider & Links --- */
+.divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #a0a0a0;
+    margin: 2rem 0;
+}
+
+.divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.divider:not(:empty)::before { margin-right: .5em; }
+.divider:not(:empty)::after { margin-left: .5em; }
+
+.signup-link {
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+    color: #e0e0e0;
+}
+
+.signup-link a {
+    color: #8b5cf6; /* A color from the gradient */
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.signup-link a:hover {
+    text-decoration: underline;
+}
+
+.error-message {
+    padding: 0.8rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+    background-color: rgba(255, 59, 48, 0.1);
+    color: #ff8c85;
+    border: 1px solid rgba(255, 59, 48, 0.3);
+}
+

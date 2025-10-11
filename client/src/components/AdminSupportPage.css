@@ -1,0 +1,137 @@
+/* --- Main Container & Background --- */
+.admin-support-container {
+    padding: 2rem;
+    font-family: 'Segoe UI', 'Roboto', sans-serif;
+    background-color: #0a0a0a; /* Updated to pure black */
+    min-height: 100vh;
+    color: #e0e0e0;
+}
+
+.admin-support-container h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2.8rem;
+    font-weight: 600;
+    /* Gradient text effect */
+    background: linear-gradient(90deg, #4f46e5, #d646e5, #ff7b7b);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.back-link {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    color: #8b5cf6;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+/* --- Main Layout --- */
+.support-layout {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    height: calc(100vh - 150px);
+}
+
+/* --- Conversations List --- */
+.conversations-list {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 1.5rem;
+    overflow-y: auto;
+}
+
+.conversations-list h3 {
+    margin-top: 0;
+    color: #fff;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 1rem;
+}
+
+.convo-item {
+    padding: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.convo-item:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.convo-item.active {
+    background: linear-gradient(90deg, #4f46e5, #8b5cf6);
+}
+
+.convo-user {
+    font-weight: 600;
+    color: #fff;
+    margin: 0 0 0.3rem;
+}
+
+.convo-last-message {
+    font-size: 0.9rem;
+    color: #a0a0a0;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* --- Main Chat Area --- */
+.chat-area {
+    background: #000; /* Black background for chat area */
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.no-chat-selected {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    font-size: 1.2rem;
+    color: #a0a0a0;
+}
+
+/* Styles for the imported Chatbox component */
+.chatbox-container.admin-view {
+    position: static;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    box-shadow: none;
+    background: transparent; /* Make inner container transparent */
+}
+
+/* Ensure the admin chatbox elements fit the new theme */
+.admin-view .chatbox-header {
+    background: rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.admin-view .chatbox-messages {
+    background: #000;
+}
+.admin-view .chatbox-input {
+    background: #121212;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+.admin-view .chatbox-input input {
+     background-color: rgba(255, 255, 255, 0.05);
+}
+.admin-view .chatbox-input button {
+    background-color: #fff;
+    color: #0a0a0a;
+}
+.admin-view .chatbox-input button:hover {
+    background-color: #ddd;
+}
+
