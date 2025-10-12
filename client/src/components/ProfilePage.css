@@ -1,7 +1,7 @@
 /* --- General Container & Background --- */
 .profile-page-container {
     font-family: 'Segoe UI', 'Roboto', sans-serif;
-    background-color: #0a0a0a; /* Updated to pure black */
+    background-color: #0a0a0a;
     color: #e0e0e0;
     min-height: 100vh;
     overflow-x: hidden;
@@ -11,16 +11,15 @@
     align-items: center;
 }
 
-/* --- Profile Form Specific Wrapper --- */
+/* --- Profile Form Wrapper --- */
 .profile-form-wrapper {
     width: 100%;
-    max-width: 500px;
+    max-width: 600px;
     padding: 2.5rem;
     border-radius: 20px;
-    background: rgba(255, 255, 255, 0.03); /* Faint glassy effect */
+    background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
 }
 
 .profile-form-wrapper h2 {
@@ -28,7 +27,6 @@
     font-weight: 600;
     text-align: center;
     margin-bottom: 0.5rem;
-    /* Gradient text effect */
     background: linear-gradient(90deg, #4f46e5, #d646e5, #ff7b7b);
     -webkit-background-clip: text;
     background-clip: text;
@@ -37,8 +35,23 @@
 
 .profile-form-wrapper > p {
     text-align: center;
-    color: #a0a0a0; /* Softer grey for subtitles */
+    color: #a0a0a0;
     margin-bottom: 2.5rem;
+}
+
+.form-section {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.form-section h3 {
+    margin-top: 0;
+    color: #fff;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 0.8rem;
 }
 
 .form-group {
@@ -52,7 +65,6 @@
     color: #c0c0c0;
 }
 
-/* --- Input and Select Styles --- */
 .form-group input,
 .form-group select {
     width: 100%;
@@ -69,7 +81,6 @@
     height: 50px;
 }
 
-/* Custom dropdown arrow */
 .form-group select {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23a0a0a0' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
     background-repeat: no-repeat;
@@ -90,10 +101,43 @@
     box-shadow: 0 0 10px rgba(79, 70, 229, 0.3);
 }
 
-/* --- Update Button --- */
+/* --- Multi-Select Styles --- */
+.multi-select-container {
+    margin-bottom: 2rem;
+}
+.multi-select-container h4 {
+    color: #fff;
+    margin-bottom: 1rem;
+}
+.options-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+}
+.option-btn {
+    padding: 0.6rem 1.2rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: transparent;
+    color: #c0c0c0;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+.option-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+.option-btn.selected {
+    background: #fff;
+    color: #0a0a0a;
+    border-color: #fff;
+}
+
+/* --- Button & Message Styles --- */
 .update-btn {
     width: 100%;
-    padding: 0.9rem;
+    padding: 1rem;
     font-size: 1.1rem;
     font-weight: bold;
     cursor: pointer;
@@ -111,18 +155,19 @@
     box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2);
 }
 
-/* --- Back Link & Response Message --- */
 .response-message {
     text-align: center;
     margin-top: 1rem;
-    color: #2ecc71; /* Bright green for success */
     font-weight: 500;
 }
+.response-message.success { color: #2ecc71; }
+.response-message.error { color: #e74c3c; }
+
 
 .back-link {
     display: inline-block;
     margin-bottom: 1.5rem;
-    color: #8b5cf6; /* A color from the gradient */
+    color: #8b5cf6;
     text-decoration: none;
     font-weight: 500;
     transition: color 0.2s ease;

@@ -14,18 +14,13 @@ const RoadmapPage = () => {
     const [roadmaps, setRoadmaps] = useState([]);
     const [clubs, setClubs] = useState([]);
 
-    // Effect to fetch user data and check profile completion
     useEffect(() => {
         const fetchUserData = async () => {
             try {
-                const response = await fetch('/api/auth/profile', {
-                    credentials: 'include',
-                });
-
+                const response = await fetch('/api/auth/profile', { credentials: 'include' });
                 if (response.ok) {
                     const userData = await response.json();
                     setUser(userData);
-
                     if (!userData.age || !userData.gender || !userData.phoneNumber) {
                         setIsProfileComplete(false);
                     } else {
@@ -39,11 +34,9 @@ const RoadmapPage = () => {
                 navigate('/login');
             }
         };
-
         fetchUserData();
     }, [navigate]);
     
-    // Effect to fetch roadmaps and clubs from the API
     useEffect(() => {
         const fetchContent = async () => {
             try {
@@ -56,24 +49,17 @@ const RoadmapPage = () => {
                 console.error("Failed to fetch page content:", error);
             }
         };
-
         fetchContent();
     }, []);
 
-
-    // Effect to handle clicks outside the profile dropdown
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (profileRef.current && !profileRef.current.contains(event.target)) {
                 setShowLogout(false);
             }
         };
-
         document.addEventListener('mousedown', handleClickOutside);
-
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
-        };
+        return () => document.removeEventListener('mousedown', handleClickOutside);
     }, []);
 
     const handleLogout = async (e) => {
@@ -87,20 +73,40 @@ const RoadmapPage = () => {
     };
 
     const handleViewRoadmap = (slug) => {
-        if (slug) {
-            navigate(`/roadmap/${slug}`);
-        } else {
-            console.error("Attempted to navigate to a roadmap with no slug.");
-        }
+        if (slug) navigate(`/roadmap/${slug}`);
     };
 
     const handleViewClub = (slug) => {
-        if (slug && slug.trim() !== '') {
-            navigate(`/club/${slug}`);
-        } else {
-            console.error("Attempted to navigate to a club with an invalid or missing slug.");
-        }
+        if (slug) navigate(`/club/${slug}`);
     };
+
+    // --- NEW: Helper function to check if a club is recommended ---
+    const isClubRecommended = (club) => {
+        if (!user || !user.interests || user.interests.length === 0) return false;
+
+        const clubNameLower = club.name.toLowerCase();
+        const clubDescLower = club.description.toLowerCase();
+        
+        // Keywords associated with interests
+        const interestKeywords = {
+            'AI/ML': ['artificial intelligence', 'machine learning', 'ieee', 'csi'],
+            'Data Science': ['data', 'computer society', 'csi'],
+            'Web Development': ['computer society', 'csi', 'web'],
+            'Cybersecurity': ['security', 'computer society', 'csi'],
+            'Hardware/VLSI': ['electrical', 'electronics', 'ieee'],
+            'Robotics': ['robotics', 'ieee', 'mechanical'],
+            'Entrepreneurship': ['entrepreneurship', 'iste'],
+            'Cloud Computing': ['computer society', 'csi', 'cloud'],
+            'App Development': ['computer society', 'csi', 'app']
+        };
+
+        // Check if any of the user's interests match keywords in the club's name or description
+        return user.interests.some(interest => {
+            const keywords = interestKeywords[interest] || [interest.toLowerCase()];
+            return keywords.some(keyword => clubNameLower.includes(keyword) || clubDescLower.includes(keyword));
+        });
+    };
+
 
     if (!user) {
         return <div className="loading-container">Loading Your Dashboard...</div>;
@@ -117,11 +123,7 @@ const RoadmapPage = () => {
         <div className="roadmap-container">
             <header className="roadmap-header">
                 <div className="roadmap-brand">PERKS</div>
-                <div
-                    className="profile-section"
-                    ref={profileRef}
-                    onClick={() => setShowLogout(!showLogout)}
-                >
+                <div className="profile-section" ref={profileRef} onClick={() => setShowLogout(!showLogout)}>
                     <img
                         src={user.photo || `https://placehold.co/40x40/007bff/FFFFFF?text=${userInitial}`}
                         alt="User Profile"
@@ -132,16 +134,10 @@ const RoadmapPage = () => {
                     {showLogout && (
                         <div className="profile-dropdown">
                             {user && user.role === 'admin' && (
-                                <Link to="/admin" className="dropdown-item">
-                                    Admin Panel
-                                </Link>
+                                <Link to="/admin" className="dropdown-item">Admin Panel</Link>
                             )}
-                            <Link to="/profile" className="dropdown-item">
-                                Profile
-                            </Link>
-                            <a href="/logout" onClick={handleLogout} className="dropdown-item">
-                                Logout
-                            </a>
+                            <Link to="/profile" className="dropdown-item">Profile</Link>
+                            <a href="/logout" onClick={handleLogout} className="dropdown-item">Logout</a>
                         </div>
                     )}
                 </div>
@@ -166,10 +162,7 @@ const RoadmapPage = () => {
                             <div key={roadmap._id} className="roadmap-card">
                                 <h3>{roadmap.name}</h3>
                                 <p>{roadmap.description}</p>
-                                <button
-                                    className="view-roadmap-btn"
-                                    onClick={() => handleViewRoadmap(roadmap.slug)}
-                                >
+                                <button className="view-roadmap-btn" onClick={() => handleViewRoadmap(roadmap.slug)}>
                                     View Roadmap
                                 </button>
                             </div>
@@ -186,6 +179,12 @@ const RoadmapPage = () => {
                                     className="club-card clickable"
                                     onClick={() => handleViewClub(club.slug)}
                                 >
+                                    {/* --- NEW: Recommended Badge --- */}
+                                    {isClubRecommended(club) && (
+                                        <div className="recommended-badge-container">
+                                            <span className="recommended-badge">★ Recommended</span>
+                                        </div>
+                                    )}
                                     <h3>{club.name}</h3>
                                     <p>{club.description}</p>
                                     <span className="view-details-link">View Details →</span>
@@ -196,7 +195,6 @@ const RoadmapPage = () => {
                 </main>
             </div>
             
-            {/* Conditionally render the Chatbox for regular users */}
             {user && user.role === 'user' && <Chatbox user={user} />}
         </div>
     );

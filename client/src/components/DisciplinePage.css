@@ -1,0 +1,256 @@
+/* --- General Container & Background --- */
+.discipline-container {
+    font-family: 'Segoe UI', 'Roboto', sans-serif;
+    background-color: #0a0a0a; /* Pure black */
+    color: #e0e0e0;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* --- Impactful Header --- */
+.discipline-header {
+    text-align: center;
+    padding: 5rem 2rem 3rem;
+    background: rgba(10, 10, 10, 0.5); /* Darker glass effect */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+}
+
+.discipline-header h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    /* Gradient Text Effect */
+    background: linear-gradient(90deg, #4f46e5, #d646e5, #ff7b7b);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.discipline-header p {
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 0 auto 1rem;
+    line-height: 1.7;
+    color: #a0a0a0;
+}
+
+.back-to-roadmaps {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    color: #c0c0c0;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.back-to-roadmaps:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* --- Main Content Area --- */
+.discipline-main {
+    padding: 3rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.roadmap-section h2, .courses-section h2, .internship-section h2, .recommended-clubs-section h2 {
+    text-align: center;
+    font-size: 2.8rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 3rem;
+}
+
+/* --- Interactive Year Tabs --- */
+.year-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+    position: sticky;
+    top: 80px;
+    background: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(10px);
+    padding: 1rem;
+    border-radius: 50px;
+    z-index: 900;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.year-tab {
+    padding: 0.8rem 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: transparent;
+    color: #e0e0e0;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.year-tab:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+.year-tab.active {
+    background: #fff;
+    border-color: #fff;
+    color: #0a0a0a;
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+}
+
+/* --- Scroll Animation & Card Styles --- */
+.scroll-animate {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 2.5rem;
+    border-radius: 20px;
+    margin-bottom: 2.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    opacity: 0;
+    transform: scale(0.95) translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.is-visible {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+}
+
+.semester-card h3 {
+    font-size: 2rem;
+    margin-top: 0;
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+    color: #fff;
+}
+
+.semester-card ul { list-style: none; padding: 0; }
+.semester-card li {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin-bottom: 1.5rem;
+}
+.semester-card h4 { font-size: 1.4rem; color: #fff; margin-bottom: 0.5rem; }
+.semester-card p { margin: 0.5rem 0; line-height: 1.6; color: #a0a0a0; }
+.semester-card .notes { font-style: italic; color: #888; font-size: 0.95rem; }
+
+.guidance-card { border-left: 4px solid; }
+.guidance-card h3, .guidance-card h4 { margin-top: 0; font-weight: 600; }
+
+.skill-guidance { border-color: #2ecc71; }
+.skill-guidance h3 { color: #2ecc71; }
+
+.electives-guidance { border-color: #d646e5; }
+.electives-guidance h3 { color: #d646e5; }
+.electives-guidance h4 { color: #fff; margin-top: 1.5rem; }
+.electives-guidance ul { list-style-type: ' ❖ '; padding-left: 1.5rem; }
+.electives-guidance li { margin-bottom: 1rem; }
+
+.internship-guidance { border-color: #f39c12; }
+.internship-guidance h4 { color: #f39c12; }
+.internship-guidance ul { list-style-type: ' ➤ '; padding-left: 1.5rem; }
+
+/* --- Recommendations --- */
+.electives-guidance li.recommended-item {
+    background: rgba(214, 70, 229, 0.1);
+    border-left: 2px solid #d646e5;
+    padding-left: 1.2rem;
+}
+
+.recommended-badge {
+    background: linear-gradient(90deg, #d646e5, #ff7b7b);
+    color: #fff;
+    padding: 0.2rem 0.6rem;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-left: 0.5rem;
+}
+
+.recommended-clubs-section {
+    padding: 2.5rem;
+    border-radius: 20px;
+    margin-top: 3rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.club-card-link {
+    text-decoration: none;
+}
+
+/* --- Engaging Course Cards --- */
+.courses-section {
+    padding: 0;
+    background: transparent;
+    border: none;
+}
+
+.courses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.course-card {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 2rem;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.course-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.course-card h4 { margin-top: 1rem; font-size: 1.3rem; color: #fff; }
+.course-card p { flex-grow: 1; font-size: 1rem; color: #a0a0a0; }
+
+.platform-badge {
+    padding: 0.4rem 0.9rem;
+    border-radius: 50px;
+    font-weight: 700;
+    color: #fff;
+    align-self: flex-start;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+}
+.platform-badge.udemy { background-color: #a435f0; }
+.platform-badge.coursera { background-color: #0056d2; }
+.platform-badge.neetcode { background-color: #f39c12; }
+.platform-badge.edx { background-color: #c92c3a; }
+
+.view-course-link {
+    color: #8b5cf6;
+    text-decoration: none;
+    font-weight: 700;
+    margin-top: 1.5rem;
+    transition: color 0.3s ease;
+}
+.view-course-link:hover { color: #fff; }
+
+.loading-container, .error-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-size: 1.5rem;
+    color: #fff;
+    background: #0a0a0a;
+}
+

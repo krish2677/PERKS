@@ -128,23 +128,24 @@ const updateProfile = async (req, res) => {
             return res.status(404).json({ message: 'User not found' });
         }
 
-        if (req.body.displayName && req.body.displayName.trim() !== '') {
-            user.displayName = req.body.displayName;
-        }
-
+        // Update standard fields
+        user.displayName = req.body.displayName ?? user.displayName;
         user.age = req.body.age ?? user.age;
         user.gender = req.body.gender ?? user.gender;
         user.phoneNumber = req.body.phoneNumber ?? user.phoneNumber;
 
-        const updatedUser = await user.save();
+        // --- NEW: Update personalization fields ---
+        user.interests = req.body.interests || user.interests;
+        user.programmingLanguages = req.body.programmingLanguages || user.programmingLanguages;
+        user.careerGoals = req.body.careerGoals || user.careerGoals;
 
+        const updatedUser = await user.save();
         res.status(200).json(updatedUser);
     } catch (err) {
-        console.error(err);
+        console.error("Error updating profile:", err);
         res.status(500).json({ message: 'Server error during profile update.' });
     }
 };
-
 
 module.exports = {
     signup,
