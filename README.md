@@ -18,7 +18,7 @@ We provide **dynamic, interactive academic roadmaps** instead of static PDFs, wi
 
 ### 🎓 Academic Guidance
 - **Dynamic Yearly Roadmaps:** Interactive breakdown of each semester’s subjects, key concepts, and resources.  
-- **Elective Guidance:** Clear insights into **Minors**, **DLOCs**, and **Honours** subjects aligned with your career goals.  
+- **Elective Guidance:** Clear insights and recommendation for **Minors**, **DLOCs**, and **Honours** subjects aligned with your career goals.  
 - **Curated Learning:** Recommended **online courses** to complement university subjects.  
 
 ### 💼 Internship & Career Support
@@ -26,7 +26,7 @@ We provide **dynamic, interactive academic roadmaps** instead of static PDFs, wi
 - **Skill Pathways:** Suggested tools, frameworks, and learning paths.  
 
 ### 🤝 Clubs & Communities
-- **Explore Clubs:** Discover campus clubs and professional societies with details like mission, hierarchy, and events.  
+- **Explore Clubs:** Discover campus clubs and professional societies with details like mission, hierarchy, and events and we also recommend based on your interests.  
 - **Join & Engage:** Know how to participate and what you’ll gain.  
 
 ### 🧑‍💻 Admin Panel (CMS)
