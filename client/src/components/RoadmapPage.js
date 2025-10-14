@@ -1,7 +1,121 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import './RoadmapPage.css';
-import Chatbox from './Chatbox'; // Import the Chatbox component
+import Chatbox from './Chatbox';
+
+// --- NEW: Project Idea Generator Component ---
+const ProjectIdeaGenerator = () => {
+    // Expanded list of technology options
+    const techOptions = [
+        'React', 'Node.js', 'MongoDB', 'Python', 'Machine Learning', 
+        'Databases', 'APIs', 'Cybersecurity', 'Cloud Computing', 
+        'Java', 'Spring Boot', 'SQL', 'NoSQL', 'Frontend Development',
+        'Backend Development', 'Fullstack Development', 'Mobile Development',
+        'Android (Kotlin/Java)', 'iOS (Swift/Objective-C)', 'Flutter', 
+        'React Native', 'Data Science', 'Big Data', 'AI/Deep Learning', 
+        'Natural Language Processing (NLP)', 'Computer Vision', 'DevOps',
+        'Docker', 'Kubernetes', 'AWS', 'Azure', 'Google Cloud (GCP)',
+        'Blockchain', 'Web3', 'Game Development', 'Unity', 'C++', 'C#',
+        'Embedded Systems', 'IoT (Internet of Things)', 'UI/UX Design',
+        'Vue.js', 'Angular', 'TypeScript', 'GraphQL', 'Microservices'
+    ];
+    
+    const [selectedTech, setSelectedTech] = useState([]);
+    const [ideas, setIdeas] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState('');
+
+    const toggleTech = (tech) => {
+        setSelectedTech(prev => 
+            prev.includes(tech) ? prev.filter(t => t !== tech) : [...prev, tech]
+        );
+    };
+
+    const handleGenerate = async () => {
+        if (selectedTech.length === 0) {
+            setError('Please select at least one technology.');
+            return;
+        }
+        setError('');
+        setLoading(true);
+        setIdeas([]); // Clear previous ideas when generating new ones
+        try {
+            const response = await fetch('/api/ai/generate-ideas', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                credentials: 'include',
+                body: JSON.stringify({ technologies: selectedTech })
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                // Ensure data is an array before setting
+                if (Array.isArray(data)) {
+                    setIdeas(data);
+                } else {
+                    console.error("API response was not an array:", data);
+                    setError('Received invalid data format from AI. Please try again.');
+                }
+            } else {
+                const errorData = await response.json(); // Attempt to read error message from backend
+                setError(errorData.message || 'Could not generate ideas. Please try again.');
+                console.error("Error from AI API:", errorData);
+            }
+        } catch (err) {
+            console.error('Frontend fetch error:', err);
+            setError('An error occurred. Please check your network connection and server status.');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    return (
+        <section className="project-generator-section">
+            <h2>Project Idea Generator</h2>
+            <p>Select technologies you've learned and get personalized project ideas to build your portfolio.</p>
+            
+            <div className="tech-selection-grid">
+                {techOptions.map(tech => (
+                    <button 
+                        key={tech}
+                        className={`tech-btn ${selectedTech.includes(tech) ? 'selected' : ''}`}
+                        onClick={() => toggleTech(tech)}
+                        disabled={loading} // Disable buttons while loading
+                    >
+                        {tech}
+                    </button>
+                ))}
+            </div>
+            
+            <button className="generate-btn" onClick={handleGenerate} disabled={loading || selectedTech.length === 0}>
+                {loading ? 'Generating...' : 'Generate Ideas'}
+            </button>
+            
+            {error && <p className="generator-error">{error}</p>}
+
+            {loading && <p className="loading-message">Fetching fresh ideas from the AI...</p>}
+
+            {ideas && ideas.length > 0 && (
+                <div className="ideas-grid">
+                    {ideas.map((idea, index) => (
+                        <div key={index} className="idea-card">
+                            <h3>{idea.title}</h3>
+                            <p>{idea.description}</p>
+                            <h4>Key Features:</h4>
+                            <ul>
+                                {idea.features && idea.features.map((feature, i) => <li key={i}>{feature}</li>)}
+                            </ul>
+                        </div>
+                    ))}
+                </div>
+            )}
+            {!loading && ideas.length === 0 && !error && (
+                <p>No project ideas generated yet. Select technologies and click "Generate Ideas"!</p>
+            )}
+        </section>
+    );
+};
+
 
 const RoadmapPage = () => {
     const [user, setUser] = useState(null);
@@ -10,7 +124,6 @@ const RoadmapPage = () => {
     const navigate = useNavigate();
     const profileRef = useRef(null);
 
-    // State for dynamic content from the database
     const [roadmaps, setRoadmaps] = useState([]);
     const [clubs, setClubs] = useState([]);
 
@@ -80,27 +193,11 @@ const RoadmapPage = () => {
         if (slug) navigate(`/club/${slug}`);
     };
 
-    // --- NEW: Helper function to check if a club is recommended ---
     const isClubRecommended = (club) => {
         if (!user || !user.interests || user.interests.length === 0) return false;
-
         const clubNameLower = club.name.toLowerCase();
         const clubDescLower = club.description.toLowerCase();
-        
-        // Keywords associated with interests
-        const interestKeywords = {
-            'AI/ML': ['artificial intelligence', 'machine learning', 'ieee', 'csi'],
-            'Data Science': ['data', 'computer society', 'csi'],
-            'Web Development': ['computer society', 'csi', 'web'],
-            'Cybersecurity': ['security', 'computer society', 'csi'],
-            'Hardware/VLSI': ['electrical', 'electronics', 'ieee'],
-            'Robotics': ['robotics', 'ieee', 'mechanical'],
-            'Entrepreneurship': ['entrepreneurship', 'iste'],
-            'Cloud Computing': ['computer society', 'csi', 'cloud'],
-            'App Development': ['computer society', 'csi', 'app']
-        };
-
-        // Check if any of the user's interests match keywords in the club's name or description
+        const interestKeywords = { 'AI/ML': ['artificial intelligence', 'machine learning', 'ieee', 'csi'], 'Data Science': ['data', 'computer society', 'csi'], 'Web Development': ['computer society', 'csi', 'web'], 'Cybersecurity': ['security', 'computer society', 'csi'], 'Hardware/VLSI': ['electrical', 'electronics', 'ieee'], 'Robotics': ['robotics', 'ieee', 'mechanical'], 'Entrepreneurship': ['entrepreneurship', 'iste'], 'Cloud Computing': ['computer society', 'csi', 'cloud'], 'App Development': ['computer society', 'csi', 'app'] };
         return user.interests.some(interest => {
             const keywords = interestKeywords[interest] || [interest.toLowerCase()];
             return keywords.some(keyword => clubNameLower.includes(keyword) || clubDescLower.includes(keyword));
@@ -169,6 +266,8 @@ const RoadmapPage = () => {
                         ))}
                     </div>
 
+                    <ProjectIdeaGenerator />
+
                     <section className="clubs-committees-section">
                         <h2>Explore Professional Bodies</h2>
                         <p>Enhance your college experience and build your network by joining a professional chapter.</p>
@@ -179,7 +278,6 @@ const RoadmapPage = () => {
                                     className="club-card clickable"
                                     onClick={() => handleViewClub(club.slug)}
                                 >
-                                    {/* --- NEW: Recommended Badge --- */}
                                     {isClubRecommended(club) && (
                                         <div className="recommended-badge-container">
                                             <span className="recommended-badge">★ Recommended</span>
@@ -201,4 +299,3 @@ const RoadmapPage = () => {
 };
 
 export default RoadmapPage;
-
