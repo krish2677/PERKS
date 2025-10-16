@@ -1,7 +1,7 @@
 /* --- General Container & Background --- */
 .club-detail-container {
     font-family: 'Segoe UI', 'Roboto', sans-serif;
-    background-color: #0a0a0a; /* Updated to pure black */
+    background-color: #0a0a0a; /* Pure black background */
     color: #e0e0e0;
     min-height: 100vh;
 }
@@ -9,10 +9,20 @@
 /* --- Impactful Header --- */
 .club-header {
     text-align: center;
-    padding: 5rem 2rem;
+    padding: 4rem 2rem;
     background: rgba(10, 10, 10, 0.5); /* Darker glass effect */
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     position: relative;
+}
+
+.club-logo {
+    width: 180px; /* Increased size */
+    height: 180px; /* Increased size */
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 2rem; /* Adjusted margin */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
 }
 
 .club-header-content h1 {
@@ -26,14 +36,26 @@
     color: transparent;
 }
 
-.club-header-content .tagline {
+.club-short-description {
     font-size: 1.3rem;
     color: #a0a0a0; /* Softer grey */
-    margin: 0 0 2rem 0;
+    margin: 0 0 1rem 0;
     font-style: italic;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.back-to-dashboard {
+.club-category, .club-department {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.3rem 0.8rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    margin: 0.5rem 0.5rem 2rem;
+}
+
+.back-link {
     position: absolute;
     top: 2rem;
     left: 2rem;
@@ -47,7 +69,7 @@
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.back-to-dashboard:hover {
+.back-link:hover {
     color: #fff;
     background: rgba(255, 255, 255, 0.1);
 }
@@ -87,13 +109,13 @@
     color: #a0a0a0;
 }
 
-.club-section ul {
+.styled-list {
     list-style-type: '✓  ';
     padding-left: 1.5rem;
     color: #c0c0c0;
 }
 
-.club-section li {
+.styled-list li {
     margin-bottom: 0.8rem;
     line-height: 1.6;
 }
@@ -124,12 +146,21 @@
     font-size: 0.9rem;
 }
 
-.event-card {
+.hierarchy-text {
+    white-space: pre-wrap;
+}
+
+.events-list .event-card {
     background: rgba(255, 255, 255, 0.05);
     padding: 1.5rem;
     border-radius: 10px;
     border-left: 4px solid #ff7b7b; /* Gradient color */
     margin-bottom: 1rem;
+}
+
+.events-list .event-card.past-event {
+    border-left-color: #a0a0a0;
+    opacity: 0.7;
 }
 
 .event-card h3 {
@@ -152,6 +183,37 @@
     color: #8b5cf6;
 }
 
+/* --- Connect With Us Section --- */
+.contact-info .contact-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.contact-info .social-link {
+    display: flex;
+    align-items: center;
+    padding: 8px 15px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    text-decoration: none;
+    color: #c0c0c0;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.contact-info .social-link i {
+    margin-right: 8px;
+    font-size: 1.1em;
+}
+
+.contact-info .social-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
 /* --- Loading & Error States --- */
 .loading-container, .error-container {
     display: flex;
@@ -162,4 +224,3 @@
     color: #fff;
     background: #0a0a0a;
 }
-

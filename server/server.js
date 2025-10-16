@@ -31,6 +31,7 @@ connectDB();
 
 const app = express();
 const server = http.createServer(app);
+const path = require('path');
 
 // --- Explicit CORS configuration for Socket.io ---
 const io = new Server(server, {
@@ -88,6 +89,8 @@ app.use(function (req, res, next) {
     res.locals.user = req.user || null;
     next();
 });
+
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Share session with Socket.io (important for authentication in Socket.io)
 io.use((socket, next) => {
@@ -163,6 +166,7 @@ app.use('/api/content', require('./routes/content'));
 app.use('/api/chat', require('./routes/chat'));
 app.use('/api/analytics', require('./routes/analytics')); 
 app.use('/api/ai', require('./routes/ai')); 
+app.use('/api', require('./routes/upload'));
 
 
 const PORT = process.env.PORT || 5000;
